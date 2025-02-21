@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3h31monob5q2"]
+
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_q6btf"]
+[ext_resource type="Texture2D" uid="uid://b4wmkwe8ynian" path="res://Assets/LevelComplete.png" id="2_huv1t"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(1, 65)
+script = ExtResource("1_q6btf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_top = 63.0
+offset_right = 1280.0
+offset_bottom = 486.0
+alignment = 1
+
+[node name="HBox-2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="HBox-1" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="HBox-0" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="LevelEnd-Assets" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LevelEnd-Assets"]
+offset_left = 257.0
+offset_top = 46.0
+offset_right = 1040.0
+offset_bottom = 465.0
+color = Color(0.16, 0.16, 0.16, 0.917647)
+
+[node name="LevelComplete" type="Sprite2D" parent="LevelEnd-Assets"]
+position = Vector2(652, 141)
+texture = ExtResource("2_huv1t")
+
+[node name="Button" type="Button" parent="LevelEnd-Assets"]
+offset_left = 519.0
+offset_top = 287.0
+offset_right = 781.0
+offset_bottom = 364.0
+theme_override_font_sizes/font_size = 50
+text = "Next Level"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 19.0
+offset_top = -51.0
+offset_right = 59.0
+offset_bottom = -28.0
+theme_override_font_sizes/font_size = 40
+text = "1"

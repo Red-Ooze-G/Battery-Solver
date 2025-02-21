@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3h31monob5q2"]
+
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_q6btf"]
+[ext_resource type="Texture2D" uid="uid://b4wmkwe8ynian" path="res://Assets/LevelComplete.png" id="2_huv1t"]
+[ext_resource type="Texture2D" uid="uid://dvxwcnmd168pl" path="res://Assets/settings.png" id="3_a5u1r"]
+[ext_resource type="PackedScene" uid="uid://dd6s0dmlkyfbo" path="res://Scenes/game_menu.tscn" id="4_vnhab"]
+[ext_resource type="AudioStream" uid="uid://cr7bsxwpud3k6" path="res://Assets/electricity_transfer.mp3" id="5_2557l"]
+[ext_resource type="AudioStream" uid="uid://dewrshvfwed5f" path="res://Assets/select_electricity.mp3" id="6_5foa8"]
+[ext_resource type="Texture2D" uid="uid://owr5x0xk83yc" path="res://Assets/undo_button_icon.png" id="7_778di"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(1, 65)
+script = ExtResource("1_q6btf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_top = 63.0
+offset_right = 1280.0
+offset_bottom = 486.0
+alignment = 1
+
+[node name="HBox-2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="HBox-1" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="HBox-0" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="LevelEnd-Assets" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="LevelEnd-Assets"]
+offset_left = 257.0
+offset_top = 46.0
+offset_right = 1040.0
+offset_bottom = 465.0
+color = Color(0.16, 0.16, 0.16, 0.917647)
+
+[node name="LevelComplete" type="Sprite2D" parent="LevelEnd-Assets"]
+position = Vector2(652, 141)
+texture = ExtResource("2_huv1t")
+
+[node name="NextLevel_Button" type="Button" parent="LevelEnd-Assets"]
+offset_left = 519.0
+offset_top = 287.0
+offset_right = 781.0
+offset_bottom = 364.0
+theme_override_font_sizes/font_size = 50
+text = "Next Level"
+
+[node name="Level_Label" type="Label" parent="."]
+offset_left = 19.0
+offset_top = -51.0
+offset_right = 59.0
+offset_bottom = -28.0
+theme_override_font_sizes/font_size = 40
+text = "Level {level_number} - {Game Mode}"
+
+[node name="Settings ICON" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.278431)
+position = Vector2(1194, 21)
+scale = Vector2(0.271484, 0.271484)
+texture = ExtResource("3_a5u1r")
+
+[node name="Button" type="Button" parent="Settings ICON"]
+offset_left = -254.0
+offset_top = -254.0
+offset_right = 258.0
+offset_bottom = 254.0
+flat = true
+
+[node name="Game_Menu" parent="." instance=ExtResource("4_vnhab")]
+visible = false
+offset_left = 2.0
+offset_top = -74.0
+offset_right = 2.0
+offset_bottom = -74.0
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="Transfer" type="AudioStreamPlayer2D" parent="SFX"]
+position = Vector2(-30, -23)
+stream = ExtResource("5_2557l")
+
+[node name="Linger" type="AudioStreamPlayer2D" parent="SFX"]
+position = Vector2(-30, -23)
+stream = ExtResource("6_5foa8")
+volume_db = 10.0
+
+[node name="Undo_Button" type="Button" parent="."]
+offset_left = 28.0
+offset_top = 498.0
+offset_right = 136.0
+offset_bottom = 599.0
+icon = ExtResource("7_778di")
+
+[node name="Label" type="Label" parent="Undo_Button"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 95.0
+offset_right = 92.0
+offset_bottom = 137.0
+theme_override_font_sizes/font_size = 30
+text = "Undo"
+
+[connection signal="pressed" from="LevelEnd-Assets/NextLevel_Button" to="." method="_on_next_level_press"]
+[connection signal="pressed" from="Settings ICON/Button" to="." method="_on_settings_opened"]
+[connection signal="pressed" from="Undo_Button" to="." method="_on_undo_button_pressed"]

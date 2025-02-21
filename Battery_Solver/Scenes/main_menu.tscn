@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://chybnpmr0g3i2"]
+
+[ext_resource type="Texture2D" uid="uid://1ca6fcl4ro81" path="res://Assets/stupd.png" id="1_3p8lt"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_yuigd"]
+[ext_resource type="Texture2D" uid="uid://ctfyrjtp5a5us" path="res://Assets/stupd_overlay.png" id="2_6l7av"]
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yuigd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 338.0
+offset_right = 534.0
+offset_bottom = 439.0
+scale = Vector2(3, 3)
+alignment = 1
+
+[node name="Uni_H" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Universal_Button" type="Button" parent="VBoxContainer/Uni_H"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play Universal"
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/Uni_H"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/Uni_H/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_3p8lt")
+
+[node name="Any_Battery" type="TextureRect" parent="VBoxContainer/Uni_H/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("2_6l7av")
+
+[node name="Simi_H" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Similar_Button" type="Button" parent="VBoxContainer/Simi_H"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Play Similar"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Simi_H"]
+layout_mode = 2
+texture = ExtResource("1_3p8lt")
+
+[node name="ExiH" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Exit_Button" type="Button" parent="VBoxContainer/ExiH"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+
+[node name="Ani_Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 89.0
+offset_right = 1124.0
+offset_bottom = 274.0
+theme_override_font_sizes/font_size = 135
+text = "Battery Solver"
+
+[connection signal="pressed" from="VBoxContainer/Uni_H/Universal_Button" to="." method="_on_universal_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Simi_H/Similar_Button" to="." method="_on_similar_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ExiH/Exit_Button" to="." method="_on_exit_button_pressed"]
+[connection signal="timeout" from="Ani_Timer" to="." method="_on_timeout"]

@@ -1,0 +1,153 @@
+[gd_scene load_steps=10 format=3 uid="uid://beuaku3q64dwt"]
+
+[ext_resource type="Script" path="res://Scripts/test_tube.gd" id="1_lodij"]
+[ext_resource type="Texture2D" uid="uid://cdc0jx8w70b3m" path="res://Assets/spark_animation.png" id="2_4ufad"]
+[ext_resource type="Texture2D" uid="uid://53u4b0qdv5iw" path="res://Assets/electric_animation.png" id="3_wskcd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2s8x"]
+atlas = ExtResource("2_4ufad")
+region = Rect2(0, 0, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6q0y"]
+atlas = ExtResource("2_4ufad")
+region = Rect2(21, 0, 21, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ynf7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2s8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6q0y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dogvq"]
+atlas = ExtResource("3_wskcd")
+region = Rect2(0, 0, 120, 173)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4dfl"]
+atlas = ExtResource("3_wskcd")
+region = Rect2(120, 0, 120, 173)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwna7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dogvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4dfl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="TestTube" type="Control"]
+custom_minimum_size = Vector2(40, 92)
+layout_mode = 3
+anchor_right = 0.041
+anchor_bottom = 0.151
+offset_right = -0.480003
+offset_bottom = 0.279991
+script = ExtResource("1_lodij")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 52.0
+offset_bottom = 109.0
+color = Color(0.205117, 0.205117, 0.205117, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 49.0
+offset_bottom = 101.0
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = -14.0
+offset_right = 38.0
+offset_bottom = 2.0
+color = Color(0.205117, 0.205117, 0.205117, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = -11.0
+offset_right = 35.0
+offset_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 103.0
+offset_right = 46.0
+offset_bottom = 195.0
+scale = Vector2(1, -1)
+
+[node name="Layer_0" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.691357, 0.691357, 0.691357, 1)
+
+[node name="Layer_1" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.690196, 0.690196, 0.690196, 1)
+
+[node name="Layer_2" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.690196, 0.690196, 0.690196, 1)
+
+[node name="Layer_3" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.690196, 0.690196, 0.690196, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -30.0
+offset_top = -23.0
+offset_right = 82.0
+offset_bottom = 123.0
+flat = true
+
+[node name="Spark" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(26, -8)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ynf7o")
+autoplay = "default"
+frame = 1
+frame_progress = 0.251483
+
+[node name="Electricity" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(26, 76)
+sprite_frames = SubResource("SpriteFrames_mwna7")
+autoplay = "default"
+frame_progress = 0.353198
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = -30.0
+offset_top = -23.0
+offset_right = 82.0
+offset_bottom = 123.0
+color = Color(0.694306, 0.440825, 0.126381, 1)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

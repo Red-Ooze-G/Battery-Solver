@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd6s0dmlkyfbo"]
+
+[ext_resource type="Texture2D" uid="uid://bf8q4q6wkrg2y" path="res://Assets/x.png" id="1_02uqf"]
+[ext_resource type="Script" path="res://Scripts/game_menu.gd" id="1_don58"]
+
+[node name="Game_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_don58")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+scale = Vector2(2, 2)
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Main_Menu_Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu
+"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stuck?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Skip_to_Next_Level_Button" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Skip to Next Level
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Level"
+
+[node name="Skip_to_Specific_Level_Button" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Skip to Specified Level"
+
+[node name="Exit_Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit Game"
+
+[node name="X" type="Sprite2D" parent="."]
+position = Vector2(1067, 132)
+texture = ExtResource("1_02uqf")
+
+[node name="Button" type="Button" parent="X"]
+offset_left = -56.0
+offset_top = -56.0
+offset_right = 56.0
+offset_bottom = 55.0
+flat = true
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Main_Menu_Button" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Skip_to_Next_Level_Button" to="." method="_on_skip_to_next_level_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/Skip_to_Specific_Level_Button" to="." method="_on_skip_to_specific_level_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="X/Button" to="." method="_on_close_menu_button_pressed"]
