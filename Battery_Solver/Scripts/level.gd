@@ -11,6 +11,7 @@ var test_tube_amount : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Util.move_history = []
 	Util.reset_score()
 	var level_type : String = Util.current_game_mode + "_level"
 	var level_number = Util.user_data[level_type]
